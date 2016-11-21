@@ -194,6 +194,7 @@ api.add_resource(LocationHandler, '/api/locations/<string:location_name>')
 #Static pages
 app.config['STATIC_ABOUT_PAGE'] = os.path.join('.', 'static', 'about.html')
 app.config['STATIC_SPLASH_PAGE'] = os.path.join('.', 'static', 'index.html')
+app.config['STATIC_VISUALIZATION_PAGE'] = os.path.join('.', 'static', 'visualization.html')
 
 #Pillar pages
 app.config['STATIC_GODS_FOLDER'] = os.path.join('.', 'static', 'gods')
@@ -275,6 +276,17 @@ def about_page():
     """
     if os.path.exists(app.config['STATIC_ABOUT_PAGE']):
         return send_file(app.config['STATIC_ABOUT_PAGE'])
+    return error_wrapper('About page to be added'), 404
+
+
+@app.route('/visualization')
+@app.route('/visualization/')
+def about_page():
+    """
+        Connects to the about page.
+    """
+    if os.path.exists(app.config['STATIC_VISUALIZATION_PAGE']):
+        return send_file(app.config['STATIC_VISUALIZATION_PAGE'])
     return error_wrapper('About page to be added'), 404
 
 @app.route('/gods')
